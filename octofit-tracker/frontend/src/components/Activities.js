@@ -35,13 +35,40 @@ function Activities() {
       });
   }, []);
 
-  if (loading) return <div className="container mt-4"><p>Loading activities...</p></div>;
-  if (error) return <div className="container mt-4"><p className="text-danger">Error: {error}</p></div>;
+  const formatDate = (dateString) => {
+    if (!dateString) return 'N/A';
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return 'Invalid Date';
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric' 
+    });
+  };
+
+  if (loading) return (
+    <div className="container mt-4 loading-spinner">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="container mt-4 error-message">
+      <div className="alert alert-danger" role="alert">
+        <h4 className="alert-heading">Error!</h4>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   return (
-    <div className="container mt-4">
-      <h2>Activities</h2>
-      <p className="text-muted">Track all fitness activities from our superhero teams</p>
+    <div className="container mt-4 fade-in">
+      <div className="component-header">
+        <h2>🏃 Activities</h2>
+        <p className="text-muted">Track all fitness activities from our superhero teams</p>
+      </div>
       <div className="table-responsive">
         <table className="table table-striped table-hover">
           <thead className="table-dark">
@@ -56,11 +83,11 @@ function Activities() {
           <tbody>
             {activities.map((activity) => (
               <tr key={activity.id}>
-                <td>{activity.activity_type}</td>
-                <td>{activity.duration}</td>
-                <td>{activity.calories_burned}</td>
+                <td><strong>{activity.activity_type}</strong></td>
+                <td>{activity.duration} min</td>
+                <td>{activity.calories_burned} cal</td>
                 <td><span className="badge bg-success">{activity.points_earned}</span></td>
-                <td>{new Date(activity.date).toLocaleDateString()}</td>
+                <td>{formatDate(activity.date)}</td>
               </tr>
             ))}
           </tbody>

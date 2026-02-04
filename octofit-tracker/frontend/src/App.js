@@ -11,10 +11,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-lg navbar-light">
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
-              <strong>🏋️ OctoFit Tracker</strong>
+              <img src="/octofitapp-small.png" alt="OctoFit Logo" />
+              <strong>OctoFit Tracker</strong>
             </Link>
             <button 
               className="navbar-toggler" 
@@ -59,8 +60,8 @@ function App() {
                 <p>Choose a section from the navigation menu to get started:</p>
                 <div className="row mt-4">
                   <div className="col-md-4 mb-3">
-                    <div className="card">
-                      <div className="card-body">
+                    <div className="card home-card">
+                      <div className="card-body text-center">
                         <h5 className="card-title">👥 Teams</h5>
                         <p className="card-text">View Team Marvel and Team DC</p>
                         <Link to="/teams" className="btn btn-primary">View Teams</Link>
@@ -68,8 +69,8 @@ function App() {
                     </div>
                   </div>
                   <div className="col-md-4 mb-3">
-                    <div className="card">
-                      <div className="card-body">
+                    <div className="card home-card">
+                      <div className="card-body text-center">
                         <h5 className="card-title">🦸 Users</h5>
                         <p className="card-text">See all superheroes</p>
                         <Link to="/users" className="btn btn-primary">View Users</Link>
@@ -77,8 +78,8 @@ function App() {
                     </div>
                   </div>
                   <div className="col-md-4 mb-3">
-                    <div className="card">
-                      <div className="card-body">
+                    <div className="card home-card">
+                      <div className="card-body text-center">
                         <h5 className="card-title">🏆 Leaderboard</h5>
                         <p className="card-text">Check rankings</p>
                         <Link to="/leaderboard" className="btn btn-primary">View Leaderboard</Link>

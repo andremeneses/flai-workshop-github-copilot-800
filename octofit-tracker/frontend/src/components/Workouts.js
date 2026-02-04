@@ -35,8 +35,22 @@ function Workouts() {
       });
   }, []);
 
-  if (loading) return <div className="container mt-4"><p>Loading workouts...</p></div>;
-  if (error) return <div className="container mt-4"><p className="text-danger">Error: {error}</p></div>;
+  if (loading) return (
+    <div className="container mt-4 loading-spinner">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="container mt-4 error-message">
+      <div className="alert alert-danger" role="alert">
+        <h4 className="alert-heading">Error!</h4>
+        <p>{error}</p>
+      </div>
+    </div>
+  );
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty.toLowerCase()) {
@@ -48,13 +62,15 @@ function Workouts() {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Workouts</h2>
-      <p className="text-muted">Superhero-themed fitness workouts</p>
+    <div className="container mt-4 fade-in">
+      <div className="component-header">
+        <h2>💪 Workouts</h2>
+        <p className="text-muted">Superhero-themed fitness workouts</p>
+      </div>
       <div className="row">
         {workouts.map((workout) => (
           <div key={workout.id} className="col-md-6 col-lg-4 mb-4">
-            <div className="card h-100 shadow-sm">
+            <div className="card custom-card h-100">
               <div className="card-body">
                 <h5 className="card-title">{workout.name}</h5>
                 <p className="card-text">{workout.description}</p>
